@@ -12,7 +12,7 @@ DATABASE = 'todolist.db'
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-@app.route("/api/items")  # default method = GET
+@app.route("/api/items")
 def get_items():
     db = get_db()
     cur = db.execute('SELECT what_to_do, due_date, status FROM entries')
@@ -40,7 +40,6 @@ def delete_item(item):
 
 @app.route("/api/items/<item>", methods=['PUT'])
 def update_item(item):
-    # we do not need the body so just ignore it
     item = urllib.parse.unquote(item)
     db = get_db()
     db.execute("UPDATE entries SET status='done' WHERE what_to_do='"+item+"'")
