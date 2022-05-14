@@ -1,13 +1,14 @@
 #!/bin/bash
 #Claire Biasco
-# Final Script
+# Final Script: Simple GCP Cloud Deployment
+# 5/12/2022
 
 echo "Hello! Please login to begin..."
 echo
-#gcloud auth login
+gcloud auth login
 
 echo "Enter your Project ID: (ex- cisc5550-346407)"
-read projectID  #(for testing: cisc5550-346407)
+read projectID
 gcloud config set project $projectID
 gcloud config set compute/zone us-central1-a
 #gcloud services enable compute.googleapis.com
@@ -55,9 +56,9 @@ do
         echo "Name of instance: "
         read instancen
         echo "Local directory path of folder: "
-        #read origin
+        read origin
         echo "Destination path: "
-        #read dest
+        read dest
         echo "GCP username and instance (ex- cbiasco2@trial2): "
         read username
         gcloud compute scp --recurse $origin $username:$dest
@@ -125,8 +126,3 @@ do
   read ent
 
 done
-
-
-#gcloud compute scp --recurse /Users/claireb/Desktop/Cloud-HW4 claireb@trial2:~/HW4
-
-#gcloud compute ssh --zone "us-central1-a" "trial2"  --tunnel-through-iap --project "cisc5550-346407"
